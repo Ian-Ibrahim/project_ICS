@@ -263,17 +263,10 @@
     height:2em;
     width:auto;
   }
-  .toggle-path {
-    transition: background 0.3s ease-in-out;
-}
-.toggle-circle {
-    top: 0.1rem;
-    left: 0.25rem;
-    transition: all 0.3s ease-in-out;
-}
-input:checked ~ .toggle-circle {
-    transform: translateX(100%);
-}
-input:checked ~ .toggle-path {
-    background-color:#fda803;
-}
+  input:checked {
+    background-color: #22c55e; /* bg-green-500 */
+  }
+
+  input:checked ~ span:last-child {
+    --tw-translate-x: 1.75rem; /* translate-x-7 */
+  }

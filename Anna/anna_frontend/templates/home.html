@@ -269,11 +269,10 @@
 
                   <div class=" flex flex-col mb-5 grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-8 ">
                     <div class="grid grid-cols-1">
-                        <label for="toggle-example-checked" class="flex items-center cursor-pointer relative">
-                            <input type="checkbox" id="toggle-example-checked" class="sr-only" checked="0" name="toggle">
-                            <div class="toggle-bg bg-gray-200 border-2 border-gray-200 h-6 w-11 rounded-full"></div>
-                            <span class="ml-3 text-gray-900 text-sm font-medium">Toggle me (checked)</span>
-                            </label>
+                      <label class="flex items-center relative w-max cursor-pointer select-none">
+                        <span class="text-lg font-bold mr-3">Toggle</span>
+                        <input type="checkbox" class="appearance-none transition-colors cursor-pointer w-14 h-7 rounded-full " />
+                      </label>
                     </div>
                     <div class="grid grid-cols-1">
                       <label class="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold" for="toilets">No. of Toilets</label>
