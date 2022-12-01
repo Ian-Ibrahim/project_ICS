@@ -117,8 +117,9 @@
         
               <div class="mt-10">
                 <form action="#">
-                <div class="flex flex-col mb-5">
-                        <label class="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold" for="type">Type</label>
+                  <div class=" flex flex-col mb-5 grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-8 ">
+                    <div class="grid grid-cols-1">
+                      <label class="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold" for="type">Type</label>
                         <select 
                         name="type"
                         id="type"
@@ -135,8 +136,69 @@
                           <option value="house">house</option>
                           <option value="apartment">Apartment</option>
                         </select>
-                 </div>
-
+                    </div>
+                    <div class="grid grid-cols-1">
+                      <label class="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold" for="sub_type">Sub type</label>
+                        <select 
+                        name="sub_type"
+                        id="sub_type"
+                        class="text-sm
+                        placeholder-gray-500
+                        pl-2
+                        pr-4
+                        rounded-2xl
+                        border border-gray-400
+                        w-full
+                        py-2
+                        focus:outline-none focus:border-blue-400"
+                        >
+                          <option value="townhouse">townhouse</option>
+                          <option value="Missing">missing</option>
+                        </select>
+                    </div>
+                  </div>
+                  <div class=" flex flex-col mb-5 grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-8 ">
+                    <div class="grid grid-cols-1">
+                      <label class="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold" for="type">County</label>
+                        <select 
+                        name="county"
+                        id="county"
+                        class="text-sm
+                        placeholder-gray-500
+                        pl-2
+                        pr-4
+                        rounded-2xl
+                        border border-gray-400
+                        w-full
+                        py-2
+                        focus:outline-none focus:border-blue-400"
+                        >
+                          <option value="Mombasa">Mombasa</option>
+                          <option value="Nairobi">Nairobi</option>
+                          <option value="Kajiado">Kajiado</option>
+                          <option value="Kiambu">Kiambu</option>
+                        </select>
+                    </div>
+                    <div class="grid grid-cols-1">
+                      <label class="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold" for="locality">Locality</label>
+                        <select 
+                        name="loality"
+                        id="locality"
+                        class="text-sm
+                        placeholder-gray-500
+                        pl-2
+                        pr-4
+                        rounded-2xl
+                        border border-gray-400
+                        w-full
+                        py-2
+                        focus:outline-none focus:border-blue-400"
+                        >
+                          <option value="Westlands">Westlands</option>
+                          <option value="Langata">Langata</option>
+                        </select>
+                    </div>
+                  </div>
                  <div class="flex flex-col mb-5">
                     <label
                       for="bedrooms"
@@ -270,33 +332,26 @@
                   <div class=" flex flex-col mb-5 grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-8 ">
                     <div class="grid grid-cols-1">
                       <label class="flex items-center relative w-max cursor-pointer select-none">
-                        <span class="text-lg font-bold mr-3">Toggle</span>
-                        <input type="checkbox" class="appearance-none transition-colors cursor-pointer w-14 h-7 rounded-full " />
+                        <span class="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold mr-3">Furnished</span>
+                        <input type="checkbox" name="furnished" class="appearance-none transition-colors cursor-pointer w-14 h-7 rounded-full " />
                       </label>
                     </div>
                     <div class="grid grid-cols-1">
-                      <label class="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold" for="toilets">No. of Toilets</label>
-                      <input
-                        id="toilets"
-                        type="number"
-                        name="toilets"
-                        required
-                        class="
-                        text-sm
-                        placeholder-gray-500
-                        pl-2
-                        pr-4
-                        rounded-2xl
-                        border border-gray-400
-                        w-full
-                        py-2
-                        focus:outline-none focus:border-blue-400
-                        "
-                        placeholder="toilets"
-                      />
+                      <label class="flex items-center relative w-max cursor-pointer select-none">
+                        <span class="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold mr-3">Serviced</span>
+                        <input type="checkbox" name="serviced" class="appearance-none transition-colors cursor-pointer w-14 h-7 rounded-full " />
+                      </label>
                     </div>
                   </div>
-
+                  <div class=" flex flex-col mb-5 grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-8 ">
+                    <div class="grid grid-cols-1">
+                      <label class="flex items-center relative w-max cursor-pointer select-none">
+                        <span class="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold mr-8">Shared</span>
+                        <input type="checkbox" name="shared" class="appearance-none transition-colors cursor-pointer w-14 h-7 rounded-full " />
+                      </label>
+                    </div>
+                    
+                  </div>
 
                   <div class="flex w-full">
                     <button
