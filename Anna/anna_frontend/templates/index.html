@@ -7,6 +7,295 @@
     <title>Anna:Rental estimation tool</title>
 </head>
 <body>
-    
+    <main>
+        {% extends "base.html" %}
+        {% block content %}
+        <div class="min-h-screen flex flex-col items-center justify-center bg-gray-100">
+            <div class=" property-input-card       flex flex-col bg-white shadow-md px-4 sm:px-6
+                md:px-8
+                lg:px-10
+                py-8
+                rounded-3xl
+                w-50
+                max-w-md
+              "
+            >
+              <div class="font-medium self-center text-xl sm:text-3xl text-gray-800">
+                Get your estimates.
+              </div>
+              <div class="mt-4 self-center text-xl sm:text-sm text-gray-800">
+                Enter your property details
+              </div>
+        
+              <div class="mt-10">
+                <form action="#">
+                  <div class=" flex flex-col mb-5 grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-8 ">
+                    <div class="grid grid-cols-1">
+                      <label class="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold" for="type">Type</label>
+                        <select 
+                        name="type"
+                        id="type"
+                        class="text-sm
+                        placeholder-gray-500
+                        pl-2
+                        pr-4
+                        rounded-2xl
+                        border border-gray-400
+                        w-full
+                        py-2
+                        focus:outline-none focus:border-blue-400"
+                        >
+                          <option value="house">house</option>
+                          <option value="apartment">Apartment</option>
+                        </select>
+                    </div>
+                    <div class="grid grid-cols-1">
+                      <label class="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold" for="sub_type">Sub type</label>
+                        <select 
+                        name="sub_type"
+                        id="sub_type"
+                        class="text-sm
+                        placeholder-gray-500
+                        pl-2
+                        pr-4
+                        rounded-2xl
+                        border border-gray-400
+                        w-full
+                        py-2
+                        focus:outline-none focus:border-blue-400"
+                        >
+                          <option value="townhouse">townhouse</option>
+                          <option value="Missing">missing</option>
+                        </select>
+                    </div>
+                  </div>
+                  <div class=" flex flex-col mb-5 grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-8 ">
+                    <div class="grid grid-cols-1">
+                      <label class="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold" for="type">County</label>
+                        <select 
+                        name="county"
+                        id="county"
+                        class="text-sm
+                        placeholder-gray-500
+                        pl-2
+                        pr-4
+                        rounded-2xl
+                        border border-gray-400
+                        w-full
+                        py-2
+                        focus:outline-none focus:border-blue-400"
+                        >
+                          <option value="Mombasa">Mombasa</option>
+                          <option value="Nairobi">Nairobi</option>
+                          <option value="Kajiado">Kajiado</option>
+                          <option value="Kiambu">Kiambu</option>
+                        </select>
+                    </div>
+                    <div class="grid grid-cols-1">
+                      <label class="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold" for="locality">Locality</label>
+                        <select 
+                        name="loality"
+                        id="locality"
+                        class="text-sm
+                        placeholder-gray-500
+                        pl-2
+                        pr-4
+                        rounded-2xl
+                        border border-gray-400
+                        w-full
+                        py-2
+                        focus:outline-none focus:border-blue-400"
+                        >
+                          <option value="Westlands">Westlands</option>
+                          <option value="Langata">Langata</option>
+                        </select>
+                    </div>
+                  </div>
+                 <div class="flex flex-col mb-5">
+                    <label
+                      for="bedrooms"
+                      class="tracking-wide text-gray-600 uppercase md:text-sm text-xs text-gray-500 text-light font-semibold"
+                      >Bedrooms:</label
+                    >
+                    <div class="relative">
+                      <div
+                        class="
+                          inline-flex
+                          items-center
+                          justify-center
+                          absolute
+                          left-0
+                          top-0
+                          h-full
+                          w-10
+                          text-gray-400
+                        "
+                      >
+                      </div>
+                      <input
+                        id="bedrooms"
+                        type="number"
+                        name="bedrooms"
+                        required
+                        class="
+                        text-sm
+                        placeholder-gray-500
+                        pl-2
+                        pr-4
+                        rounded-2xl
+                        border border-gray-400
+                        w-full
+                        py-2
+                        focus:outline-none focus:border-blue-400
+                        "
+                        placeholder="Number of bedrooms"
+                      />
+                    </div>
+                  </div>
+
+                 <div class=" flex flex-col mb-5 grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-8 ">
+                    <div class="grid grid-cols-1">
+                        <label class="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold" for="toilets">No of bathrooms</label>
+                      <input
+                        id="bathrrooms"
+                        type="number"
+                        name="bathrooms"
+                        required
+                        class="
+                        text-sm
+                        placeholder-gray-500
+                        pl-2
+                        pr-4
+                        rounded-2xl
+                        border border-gray-400
+                        w-full
+                        py-2
+                        focus:outline-none focus:border-blue-400
+                        "
+                        placeholder="bathrooms"
+                      />
+                    </div>
+                    <div class="grid grid-cols-1">
+                      <label class="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold" for="toilets">No. of Toilets</label>
+                      <input
+                        id="toilets"
+                        type="number"
+                        name="toilets"
+                        required
+                        class="
+                        text-sm
+                        placeholder-gray-500
+                        pl-2
+                        pr-4
+                        rounded-2xl
+                        border border-gray-400
+                        w-full
+                        py-2
+                        focus:outline-none focus:border-blue-400
+                        "
+                        placeholder="toilets"
+                      />
+                    </div>
+                  </div>
+
+                  <div class="flex flex-col mb-5">
+                    <label
+                      for="parking"
+                      class="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold"
+                      >Parking spots:</label
+                    >
+                    <div class="relative">
+                      <div
+                        class="
+                          inline-flex
+                          items-center
+                          justify-center
+                          absolute
+                          left-0
+                          top-0
+                          h-full
+                          w-10
+                          text-gray-400
+                        "
+                      >
+                      </div>
+        
+                      <input
+                        id="parking"
+                        type="number"
+                        name="parking"
+                        value="0"
+                        class="
+                          text-sm
+                          placeholder-gray-500
+                          pl-2
+                          pr-4
+                          rounded-2xl
+                          border border-gray-400
+                          w-full
+                          py-2
+                          focus:outline-none focus:border-blue-400
+                        "
+                        placeholder="parking spaces available"
+                      />
+                    </div>
+                  </div>
+
+                  <div class=" flex flex-col mb-5 grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-8 ">
+                    <div class="grid grid-cols-1">
+                      <label class="flex items-center relative w-max cursor-pointer select-none">
+                        <span class="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold mr-3">Furnished</span>
+                        <input type="checkbox" name="furnished" class="appearance-none transition-colors cursor-pointer w-14 h-7 rounded-full " />
+                      </label>
+                    </div>
+                    <div class="grid grid-cols-1">
+                      <label class="flex items-center relative w-max cursor-pointer select-none">
+                        <span class="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold mr-3">Serviced</span>
+                        <input type="checkbox" name="serviced" class="appearance-none transition-colors cursor-pointer w-14 h-7 rounded-full " />
+                      </label>
+                    </div>
+                  </div>
+                  <div class=" flex flex-col mb-5 grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-8 ">
+                    <div class="grid grid-cols-1">
+                      <label class="flex items-center relative w-max cursor-pointer select-none">
+                        <span class="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold mr-8">Shared</span>
+                        <input type="checkbox" name="shared" class="appearance-none transition-colors cursor-pointer w-14 h-7 rounded-full " />
+                      </label>
+                    </div>
+                    
+                  </div>
+
+                  <div class="flex w-full">
+                    <button
+                      type="submit"
+                      class="
+                        flex
+                        mt-2
+                        items-center
+                        justify-center
+                        focus:outline-none
+                        text-white text-sm
+                        sm:text-base
+                        bg-blue-500
+                        hover:bg-blue-600
+                        rounded-2xl
+                        py-2
+                        w-full
+                        transition
+                        duration-150
+                        ease-in
+                      "
+                    >
+                      <span class="mr-2 uppercase">Submit</span>
+                      
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+           
+          </div>
+    {% endblock %}
+    </main> 
 </body>
 </html>
