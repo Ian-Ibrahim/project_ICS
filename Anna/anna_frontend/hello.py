@@ -4,10 +4,21 @@ app = Flask(__name__)
 
 @app.route("/")
 def home():
-    return render_template('home.html')
-@app.route("/predict")
+    return render_template('index.html')
+@app.route("/predict",methods=['GET','POST'])
 def predict():
-    return render_template('home.html')
+    furnished=0;
+    if request.method =="POST":
+        houseType=request.form.get("type")
+        houseSubType=request.form.get("sub_type")
+        county=request.form.get("county")
+        locality=request.form.get("locality")
+        bedrooms=request.form.get("bedrooms")
+        bathrooms=request.form.get("bathrooms")
+        toilets=request.form.get("toilets")
+        parking=request.form.get("toilets")
+        furnished=request.form.get("furnished")
+    return render_template('predict.html',prediction=furnished)
 
 @app.route("/about")
 def about():
