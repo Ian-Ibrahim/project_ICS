@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Anna:Rental estimation tool</title>
 </head>
-<body>
+<body onload="setDate(),sharedChange(),furnishedChange(),servicedChange()">
     <main>
         {% extends "base.html" %}
         {% block content %}
@@ -46,6 +46,7 @@
                         w-full
                         py-2
                         focus:outline-none focus:border-blue-400"
+                        onchange="typeChange()"
                         >
                           <option value="1">house</option>
                           <option value="2">Apartment</option>
@@ -276,13 +277,13 @@
                     <div class="grid grid-cols-1">
                       <label class="flex items-center relative w-max cursor-pointer select-none">
                         <span class="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold mr-3">Furnished</span>
-                        <input type="checkbox" name="furnished" class="appearance-none transition-colors cursor-pointer w-14 h-7 rounded-full " />
+                        <input type="checkbox" onchange="furnishedChange()" id="furnished"   class="appearance-none transition-colors cursor-pointer w-14 h-7 rounded-full " />
                       </label>
                     </div>
                     <div class="grid grid-cols-1">
                       <label class="flex items-center relative w-max cursor-pointer select-none">
                         <span class="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold mr-3">Serviced</span>
-                        <input type="checkbox" name="serviced" class="appearance-none transition-colors cursor-pointer w-14 h-7 rounded-full " />
+                        <input type="checkbox" onchange="servicedChange()" id="serviced"   class="appearance-none transition-colors cursor-pointer w-14 h-7 rounded-full " />
                       </label>
                     </div>
                   </div>
@@ -290,12 +291,16 @@
                     <div class="grid grid-cols-1">
                       <label class="flex items-center relative w-max cursor-pointer select-none">
                         <span class="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold mr-8">Shared</span>
-                        <input type="checkbox" name="shared" class="appearance-none transition-colors cursor-pointer w-14 h-7 rounded-full " />
+                        <input onchange="sharedChange()" id="shared" type="checkbox" class="appearance-none transition-colors cursor-pointer w-14 h-7 rounded-full " />
                       </label>
                     </div>
                     
                   </div>
-
+                  <input type="hidden"  name="year" id="year">
+                  <input type="hidden" name="month" id="month">
+                  <input type="number" name="shared" id="sharedValue">
+                  <input type="number" name="serviced" id="servicedValue">
+                  <input type="number" name="furnished" id="furnishedValue">
                   <div class="flex w-full">
                     <button
                       type="submit"
