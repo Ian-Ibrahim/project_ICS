@@ -31,6 +31,7 @@ df['listdate']= pd.to_datetime(df['listdate'])
 df["list_year"]=df['listdate'].dt.year
 df["list_month"]=df['listdate'].dt.month
 df.drop('listdate', inplace=True, axis=1)
+df.drop('id', inplace=True, axis=1)
 print (df.state.unique())
 lb_encoder = LabelEncoder()
 df['category'] = lb_encoder.fit_transform(df['category'])
@@ -49,7 +50,6 @@ for column in features:
         features[column] = StandardScaler().fit_transform(features[column].values.reshape(-1, 1))
 # Call train_test_split function from sklearn library to split the dataset randomly
 X_train, X_test, Y_train, Y_test = train_test_split(features, labels, test_size=1/3, random_state=126)
-print( len(X_train), len(X_test), len(Y_train), len(Y_test) )
 class ANNRegressor(BaseEstimator, RegressorMixin):
     # Constructor to instantiate default or user-defined values
     def __init__(self, in_features=16, num_hidden=1, num_neurons=36, epochs=50, 
@@ -113,23 +113,10 @@ class ANNRegressor(BaseEstimator, RegressorMixin):
         predictions = self.model.predict(X)
         
         return predictions
+
 X_train = np.asarray(X_train).astype(np.float32)
 Y_train = np.asarray(Y_train).astype(np.float32)
 annRegressor = ANNRegressor(in_features=X_train.shape[1], num_hidden=25, num_neurons=45, epochs=29, verbose=1)
 annRegressor.fit(X_train, Y_train)
-# Method to display model evaluation metrics
-def display_model_metrics(label, predictions):
-    # The mean absolute error
-    print("Mean absolute error: %.4f\n" % mean_absolute_error(label, predictions))
-
-    # The mean squared error
-    print("Root mean squared error: %.4f\n" % np.sqrt(mean_squared_error(label, predictions)))
-
-    # The coefficient of determination: 1 is perfect prediction R^2
-    print("Coefficient of determination: %.4f\n" % r2_score(label, predictions))
-
-predictions = annRegressor.predict(X_test)
-display(Y_test)
-display(predictions)
-
-display_model_metrics(Y_test, predictions[:,-1])
+import pickle
+pickle.dump(annRegressor, open('models/annmodel.pkl', 'wb'))
