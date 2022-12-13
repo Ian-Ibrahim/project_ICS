@@ -7,7 +7,7 @@ import base64
 import pickle
 from sklearn.preprocessing import LabelEncoder, StandardScaler
 from sklearn.base import BaseEstimator, RegressorMixin
-
+bedrooms=0
 class ANNRegressor(BaseEstimator, RegressorMixin):
     # Constructor to instantiate default or user-defined values
     def __init__(self, in_features=12, num_hidden=1, num_neurons=36, epochs=50, 
@@ -117,14 +117,19 @@ def predict():
         to_predict_list.append(year)
         month=request.form.get("month")
         to_predict_list.append(month)
+        formresult = request.form
         to_predict_list = list(map(int, to_predict_list))
-        result = ValuePredictor(to_predict_list) 
+        Rentalresult = ValuePredictor(to_predict_list) 
+        result=Rentalresult
     return render_template('predict.html',prediction=result)
 
 @app.route("/about")
 def about():
     return render_template('about.html')
-
+@app.route("/result",methods=['GET', 'POST'])
+def result():
+    
+    return render_template('result.html',bedrooms=bedrooms)
 @app.route("/login")
 def login():
     return render_template('authentication/login.html')

@@ -26,8 +26,6 @@
               <div class="mt-4 self-center text-xl sm:text-sm text-gray-800">
                 Enter your property details
               </div>
-        
-              <div class="mt-10">
                 <p>{{ prediction }}</p>
                 <form action="{{ url_for('predict')}}" method="post">
                   <div class=" flex flex-col mb-5 grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-8 ">
@@ -48,8 +46,8 @@
                         focus:outline-none focus:border-blue-400"
                         onchange="typeChange()"
                         >
-                          <option value="1">house</option>
-                          <option value="2">Apartment</option>
+                          <option value="0">house</option>
+                          <option value="1">Apartment</option>
                         </select>
                     </div>
                     <div class="grid grid-cols-1">
@@ -67,16 +65,16 @@
                         py-2
                         focus:outline-none focus:border-blue-400"
                         >
-                          <option value="1" class="house-option">townhouse</option>
-                          <option value="8" class="apartment-option">Bedsitter</option>
-                          <option value="3" class="house-option">Detached duplex</option>
-                          <option value="6"  class="house-option">Semi-detached duplex</option>
-                          <option value="4" class="house-option">Detached Bungalow</option>
-                          <option value="10" class="house-option">Semi-detached bungalow</option>
-                          <option value="7" class="house-option">Terraced bungalow</option>
-                          <option value="5" class="apartment-option">Mini flat</option>                          
-                          <option value="9" class="house-option">Block of Flats</option>
-                          <option value="2">missing</option>                          
+                          <option value="0" class="house-option">townhouse</option>
+                          <option value="7" class="apartment-option">Bedsitter</option>
+                          <option value="2" class="house-option">Detached duplex</option>
+                          <option value="5"  class="house-option">Semi-detached duplex</option>
+                          <option value="3" class="house-option">Detached Bungalow</option>
+                          <option value="9" class="house-option">Semi-detached bungalow</option>
+                          <option value="6" class="house-option">Terraced bungalow</option>
+                          <option value="4" class="apartment-option">Mini flat</option>                          
+                          <option value="8" class="house-option">Block of Flats</option>
+                          <option value="1">missing</option>                          
                         </select>
                     </div>
                   </div>
@@ -97,10 +95,10 @@
                         focus:outline-none focus:border-blue-400"
                         onchange="stateChange()"
                         >                          
-                          <option value="1">Nairobi</option>
-                          <option value="2">Kiambu</option>
-                          <option value="3">Kajiado</option>
-                          <option value="4">Mombasa</option>
+                          <option value="0">Nairobi</option>
+                          <option value="1">Kiambu</option>
+                          <option value="2">Kajiado</option>
+                          <option value="3">Mombasa</option>
                         </select>
                     </div>
                     <div class="grid grid-cols-1">
@@ -119,27 +117,27 @@
                         focus:outline-none focus:border-blue-400"
                         required
                         >
-                          <option value="1" class="nairobi-option ">Nairobi central</option>
-                          <option value="2" class="nairobi-option">Parklands</option>
-                          <option value="3" class="nairobi-option">Lavington</option>
-                          <option value="4" class="nairobi-option">Westlands</option>
-                          <option value="5" class="nairobi-option">Kileleshwa</option>
-                          <option value="6" class="nairobi-option">Kitisuru</option>                          
-                          <option value="8" class="nairobi-option">Kilimani</option>
-                          <option value="9" class="nairobi-option">karen</option>
-                          <option value="11" class="nairobi-option">Langata</option>
-                          <option value="14" class="nairobi-option">Kasarani</option>                          
-                          <option value="17" class="nairobi-option">Nairobi west</option> 
-                          <option value="7" class="kiambu-option">Kabete</option>
-                          <option value="12" class="kiambu-option">Thika</option>
-                          <option value="13" class="kiambu-option">Ruiru</option>
-                          <option value="15" class="kiambu-option">Kikuyu</option>
-                          <option value="16" class="kiambu-option">Juja</option>                                                   
-                          <option value="19" class="mombasa-option">Nyali</option>
-                          <option value="21" class="mombasa-option">Bamburi</option>
-                          <option value="20" class="kajiado-option">Ongata Rongai</option>  
-                          <option value="10" class="kajiado-option">Kitengela</option> 
-                          <option value="18" class="kajiado-option">Ngong</option>                       
+                          <option value="0" class="nairobi-option ">Nairobi central</option>
+                          <option value="1" class="nairobi-option">Parklands</option>
+                          <option value="2" class="nairobi-option">Lavington</option>
+                          <option value="3" class="nairobi-option">Westlands</option>
+                          <option value="4" class="nairobi-option">Kileleshwa</option>
+                          <option value="5" class="nairobi-option">Kitisuru</option>                          
+                          <option value="7" class="nairobi-option">Kilimani</option>
+                          <option value="8" class="nairobi-option">karen</option>
+                          <option value="10" class="nairobi-option">Langata</option>
+                          <option value="13" class="nairobi-option">Kasarani</option>                          
+                          <option value="16" class="nairobi-option">Nairobi west</option> 
+                          <option value="6" class="kiambu-option">Kabete</option>
+                          <option value="11" class="kiambu-option">Thika</option>
+                          <option value="12" class="kiambu-option">Ruiru</option>
+                          <option value="14" class="kiambu-option">Kikuyu</option>
+                          <option value="15" class="kiambu-option">Juja</option>                                                   
+                          <option value="18" class="mombasa-option">Nyali</option>
+                          <option value="20" class="mombasa-option">Bamburi</option>
+                          <option value="19" class="kajiado-option">Ongata Rongai</option>  
+                          <option value="9" class="kajiado-option">Kitengela</option> 
+                          <option value="17" class="kajiado-option">Ngong</option>                       
                         </select>
                     </div>
                   </div>
