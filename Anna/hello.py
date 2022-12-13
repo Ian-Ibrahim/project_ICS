@@ -7,10 +7,10 @@ import base64
 import pickle
 from sklearn.preprocessing import LabelEncoder, StandardScaler
 from sklearn.base import BaseEstimator, RegressorMixin
-app = Flask(__name__)
+
 class ANNRegressor(BaseEstimator, RegressorMixin):
     # Constructor to instantiate default or user-defined values
-    def __init__(self, in_features=16, num_hidden=1, num_neurons=36, epochs=50, 
+    def __init__(self, in_features=12, num_hidden=1, num_neurons=36, epochs=50, 
                     batch_norm=False, early_stopping=True, verbose=1):
         self.in_features = in_features
         self.num_hidden = num_hidden
@@ -45,7 +45,12 @@ class ANNRegressor(BaseEstimator, RegressorMixin):
     def fit(self, X, Y):
         # Split into training and validating sets
         X_train, X_val, Y_train, Y_val = train_test_split(X, Y, test_size=1/3)
-
+        
+        # Specifies callbacks list
+        callbacks = [
+            ModelCheckpoint('models/annmodel.weights.hdf5', save_best_only=True, verbose=self.verbose)
+            
+        ]
         
         # Use early stopping to stop training when validation error reaches minimum
         if(self.early_stopping):
@@ -58,17 +63,20 @@ class ANNRegressor(BaseEstimator, RegressorMixin):
                        callbacks=callbacks, verbose=self.verbose)
         
         model_json = self.model.to_json()
+        with open("models/annmodel.json", "w") as json_file:
+            json_file.write(model_json)
+        self.model.save('models/ann_housing.h5')
         
     def predict(self, X):
         predictions = self.model.predict(X)
-        
         return predictions
 
+app = Flask(__name__)
 loaded_model = pickle.load(open("models/annmodel.pkl", "rb"))
 def ValuePredictor(to_predict_list):
-    
-    to_predict = np.array(to_predict_list).reshape(1, 14)
+    to_predict = np.array(to_predict_list).reshape(1,-1)
     result = loaded_model.predict(to_predict)
+    print(result)
     return result[0]
  
 @app.route("/")
@@ -77,8 +85,6 @@ def home():
 @app.route("/predict",methods=['GET','POST'])
 def predict():
     result=0;
-    month=5
-    
     if request.method =="POST":
         to_predict_list=list() 
         bedrooms=request.form.get("bedrooms")
@@ -95,7 +101,9 @@ def predict():
         to_predict_list.append(shared)
         parking=request.form.get("parking")
         to_predict_list.append(parking)
-        category=1
+        pre_covid=0;
+        to_predict_list.append(pre_covid)
+        category=0
         to_predict_list.append(category)
         houseType=request.form.get("type")
         to_predict_list.append(houseType)

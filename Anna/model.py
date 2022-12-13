@@ -26,13 +26,8 @@ from tensorflow.keras.metrics import mean_squared_logarithmic_error, mean_square
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.wrappers.scikit_learn import KerasRegressor
 #import dataset
-df=pd.read_csv("project_files/cleaned_listings.csv")
-df['listdate']= pd.to_datetime(df['listdate'])
-df["list_year"]=df['listdate'].dt.year
-df["list_month"]=df['listdate'].dt.month
-df.drop('listdate', inplace=True, axis=1)
-df.drop('id', inplace=True, axis=1)
-print (df.state.unique())
+df=pd.read_csv("project_files/analytical_table.csv")
+
 lb_encoder = LabelEncoder()
 df['category'] = lb_encoder.fit_transform(df['category'])
 df['type'] = lb_encoder.fit_transform(df['type'])
@@ -52,7 +47,7 @@ for column in features:
 X_train, X_test, Y_train, Y_test = train_test_split(features, labels, test_size=1/3, random_state=126)
 class ANNRegressor(BaseEstimator, RegressorMixin):
     # Constructor to instantiate default or user-defined values
-    def __init__(self, in_features=16, num_hidden=1, num_neurons=36, epochs=50, 
+    def __init__(self, in_features=16, num_hidden=1, num_neurons=36, epochs=75, 
                     batch_norm=False, early_stopping=True, verbose=1):
         self.in_features = in_features
         self.num_hidden = num_hidden
@@ -111,12 +106,29 @@ class ANNRegressor(BaseEstimator, RegressorMixin):
         
     def predict(self, X):
         predictions = self.model.predict(X)
-        
         return predictions
 
 X_train = np.asarray(X_train).astype(np.float32)
 Y_train = np.asarray(Y_train).astype(np.float32)
-annRegressor = ANNRegressor(in_features=X_train.shape[1], num_hidden=25, num_neurons=45, epochs=29, verbose=1)
+annRegressor = ANNRegressor(in_features=X_train.shape[1], num_hidden=25, num_neurons=48, epochs=35, verbose=1)
 annRegressor.fit(X_train, Y_train)
 import pickle
 pickle.dump(annRegressor, open('models/annmodel.pkl', 'wb'))
+ 
+loaded_model = pickle.load(open("models/annmodel.pkl", "rb"))
+
+# [[28435124.]]
+# Method to display model evaluation metrics
+def display_model_metrics(label, predictions):
+    # The mean absolute error
+    print("Mean absolute error: %.4f\n" % mean_absolute_error(label, predictions))
+
+    # The mean squared error
+    print("Root mean squared error: %.4f\n" % np.sqrt(mean_squared_error(label, predictions)))
+
+    # The coefficient of determination: 1 is perfect prediction R^2
+    print("Coefficient of determination: %.4f\n" % r2_score(label, predictions))
+
+predictions = annRegressor.predict(X_test)
+
+display_model_metrics(Y_test, predictions[:,-1])
