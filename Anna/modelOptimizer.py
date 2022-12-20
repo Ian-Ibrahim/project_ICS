@@ -17,7 +17,7 @@ from sklearn.metrics import r2_score
 #tensorflow importing
 import tensorflow as tf
 from tensorflow.keras.layers import *
-from tensorflow.keras.optimizers import Adam
+from tensorflow.keras.optimizers import Nadam
 from tensorflow.keras import backend as K
 from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint
 from tensorflow.keras import regularizers
@@ -94,8 +94,8 @@ class ANNRegressor(BaseEstimator, RegressorMixin):
             callbacks.append(EarlyStopping(monitor='val_loss', patience=10, verbose=self.verbose))
         
         # Compile the model then train
-        adam = Adam(learning_rate=0.001)
-        self.model.compile(optimizer=adam, loss='mse')
+        nadam = Nadam(learning_rate=0.001)
+        self.model.compile(optimizer=nadam, loss='mse')
         self.model.fit(X_train, Y_train, validation_data=(X_val, Y_val), epochs=self.epochs, 
                        callbacks=callbacks, verbose=self.verbose)
         

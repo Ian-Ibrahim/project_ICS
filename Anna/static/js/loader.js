@@ -101,3 +101,18 @@ function servicedChange(){
     document.getElementById("servicedValue").value=0
   }
 }
+function priceModalView(){
+  document.getElementById("result-container").classList.add("modal-onscreen")
+}
+function loadingExit(){
+  document.getElementById("loading-container").classList.add("loading-exit")
+}
+salePrice=document.getElementById("salePrice")
+
+if(salePrice.value!=0){
+  modalView = setTimeout(priceModalView, 1000);
+  loadingExitAnimation= setTimeout(loadingExit, 1000);
+  // document.getElementById("loading-container").style.display="none"
+// document.getElementById("loading-box").style.display="none"
+  // document.getElementById("loading-box").style.visibility="none"
+}

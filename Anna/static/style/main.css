@@ -11,9 +11,12 @@
   
   #myBody {
     display: none;
-  
+    overflow: hidden;
+    
   }
-  
+  body{
+    overflow-x: hidden;
+  }
   .loader {
     height: 100%;
     width: 100%
@@ -270,3 +273,67 @@
   input:checked ~ span:last-child {
     --tw-translate-x: 1.75rem; /* translate-x-7 */
   }
+  .modal-container{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left:150%;
+    overflow: hidden;
+    right: 0;
+    background-color:#FFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .modal-onscreen{
+    animation-name: modalView;
+    animation-duration: 1s;
+    animation-timing-function: ease-in;
+    animation-iteration-count: 1;
+    left:0%;
+  }
+  @keyframes modalView{
+    0%{left:150%}
+    100%{left:0}
+  }
+  .modal-box{
+    top:25vh;
+    height: 50vh;
+  }
+  .result{
+    padding: 2em;
+    border-radius: 3em;
+    width:50vw;
+    display:grid;
+  }
+  .result input{
+    display: block;
+    border: none;
+  }
+#loading-container{
+position: absolute;
+top:0;
+right: 0;
+height: 100vh;
+width: 100vw;
+display: flex;
+justify-content: center;
+left:-150%;
+}
+#loading-box{
+  height: 100vh;
+  width: 100vw;
+  justify-content: center;
+  background-color: #0e2020;
+  padding: 10em;
+  }
+.loading-exit{
+  left:-150%;
+  animation-name: loading-exit;
+  animation-duration: 2.5s;
+  animation-iteration-count: 1;
+}
+@keyframes loading-exit {
+  0%{left:0}
+  100%{left:-150%;}
+}
